@@ -20,7 +20,7 @@ class Evozon_Base_Model_Check_Requirement_Collection implements IteratorAggregat
     /**
      * Get requirements as iterator
      *
-     * @return ArrayIterator
+     * @return ArrayIterator An instance of an object implementing Iterator or Traversable
      */
     public function getIterator()
     {
