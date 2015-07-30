@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Evozon Base module configuration
+ *
+ * @package     Evozon_Base
+ * @copyright   Copyright (c) Evozon Systems (http://www.evozon.com/)
+ * @author      Constantin Bejenaru <constantin.bejenaru@evozon.com>
+ */
+-->
+<config>
+    <modules>
+        <Evozon_Base>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Evozon_Base>
+    </modules>
+</config>
