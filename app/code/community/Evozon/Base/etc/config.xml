@@ -11,14 +11,39 @@
 <config>
     <modules>
         <Evozon_Base>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </Evozon_Base>
     </modules>
     <global>
         <models>
             <evozon_base>
                 <class>Evozon_Base_Model</class>
+                <resourceModel>evozon_base_resource</resourceModel>
             </evozon_base>
         </models>
+
+        <evozon>
+            <adminnotification>
+                <feeds>
+                    <magento_evozon>
+                        <feed_url>http://magento.evozon.com/notifications.rss</feed_url>
+                        <frequency>1</frequency>
+                    </magento_evozon>
+                </feeds>
+            </adminnotification>
+        </evozon>
     </global>
+
+    <adminhtml>
+        <events>
+            <admin_session_user_login_success>
+                <observers>
+                    <evozon_notification>
+                        <class>evozon_base/adminNotification_observer</class>
+                        <method>update</method>
+                    </evozon_notification>
+                </observers>
+            </admin_session_user_login_success>
+        </events>
+    </adminhtml>
 </config>
