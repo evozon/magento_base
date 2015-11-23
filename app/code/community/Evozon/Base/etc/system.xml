@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Evozon system configuration
+ *
+ * @package     Evozon_Base_etc
+ * @copyright   Copyright (c) Evozon Systems (http://www.evozon.com/)
+ * @author      Constantin Bejenaru <constantin.bejenaru@evozon.com>
+ */
+-->
+<config>
+    <tabs>
+        <evozon>
+            <label>Evozon</label>
+            <class>admin-system-config-tab-evozon</class>
+        </evozon>
+    </tabs>
+</config>
+
