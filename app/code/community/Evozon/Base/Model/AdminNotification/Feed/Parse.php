@@ -44,11 +44,11 @@ class Evozon_Base_Model_AdminNotification_Feed_Parse
         if ($feed && $feed->channel && $feed->channel->item) {
             foreach ($feed->channel->item as $item) {
                 $data[] = array(
-                    'severity'    => isset($item->severity) ? (integer) $item->severity : 4,
-                    'date_added'  => $this->getDate(trim((string) $item->pubDate)),
-                    'title'       => trim((string) $item->title),
-                    'description' => trim((string) $item->description),
-                    'url'         => trim((string) $item->link),
+                    'severity'    => isset($item->severity) ? (integer)$item->severity : 4,
+                    'date_added'  => $this->getDate(trim((string)$item->pubDate)),
+                    'title'       => trim((string)$item->title),
+                    'description' => trim((string)$item->description),
+                    'url'         => trim((string)$item->link),
                 );
             }
 
@@ -68,20 +68,20 @@ class Evozon_Base_Model_AdminNotification_Feed_Parse
      */
     protected function fetchFeed()
     {
-        $client = new Zend_Http_Client(
-            $this->getFeed()->getFeedUrl(),
-            array(
-                'maxredirects' => 5,
-                'timeout'      => 2,
-                'useragent'    => 'Evozon_Base_AdminNotification_Feed',
-                'httpversion'  => Zend_Http_Client::HTTP_0,
-            )
-        );
-
         // default
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8" ?><rss></rss>', LIBXML_NOERROR, false);
 
         try {
+            $client = new Zend_Http_Client(
+                $this->getFeed()->getFeedUrl(),
+                array(
+                    'maxredirects' => 5,
+                    'timeout'      => 2,
+                    'useragent'    => 'Evozon_Base_AdminNotification_Feed',
+                    'httpversion'  => Zend_Http_Client::HTTP_0,
+                )
+            );
+
             $response = $client->request();
 
             if (!$response->isSuccessful()) {
@@ -91,8 +91,7 @@ class Evozon_Base_Model_AdminNotification_Feed_Parse
             $xml = new SimpleXMLElement(
                 $response->getBody()
             );
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             return $xml;
         }
 
@@ -132,7 +131,7 @@ class Evozon_Base_Model_AdminNotification_Feed_Parse
      */
     protected function getFrequency()
     {
-        return (integer) ($this->getFeed()->getFrequency() * 3600);
+        return (integer)($this->getFeed()->getFrequency() * 3600);
     }
 
     /**
@@ -168,6 +167,6 @@ class Evozon_Base_Model_AdminNotification_Feed_Parse
      */
     protected function getCacheKey()
     {
-        return 'evozon_adminnotifications_feed_parse' . strtolower($this->getFeed()->getFeedUrl());
+        return 'evozon_adminnotifications_feed_parse'.strtolower($this->getFeed()->getFeedUrl());
     }
 }
